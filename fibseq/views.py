@@ -1,5 +1,5 @@
-from django.utils import unittest
 from django.views.generic.simple import direct_to_template
+from django.http import Http404
 
 LARGEST_SEQUENCE = [0,1] 
 LARGEST = 1 
@@ -27,7 +27,10 @@ def latest(request):
 
 def index(request):
     if request.method=="POST":
-        n=int(request.POST.get('n'))
+        try:
+            n=int(request.POST.get('n'))
+        except:
+            return Http404
         result = fib(n)
         if len(LATEST) >=  5:
             LATEST.pop()
