@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% for tup in results %}
+<p><b>fib({{tup.0}}) = </b>{{tup.1}}</p>
+{% endfor %}
+{% endblock %}
